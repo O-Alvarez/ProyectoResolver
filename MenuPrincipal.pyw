@@ -123,16 +123,28 @@ frameFormulario.pack(fill="both", expand="True", padx=10, pady=10)
 #frame centro del formulario
 
 # Crear etiquetas y campos de entrada para demands
+demands_labels = [tk.Label(window, text=f"Demanda Farmacia {j + 1}:") for j in range(3)]
+demands_entries = [tk.Entry(window) for _ in range(3)]
+for j in range(3):
+    demands_labels[j].grid(row=2, column=j, padx=10, pady=5)
+    demands_entries[j].grid(row=2, column=j + 3, padx=10, pady=5)
 
 # Frame derecho del formulario
 
     #Etiquetas e inputos para la entrada de Capacidades de almacenes
 
 # boton para resolver el problema
+solve_button = tk.Button(window, text="Resolver", command=solve_problem)
+solve_button.grid(row=3, column=0, columnspan=8, padx=10, pady=10)
 
 
 
-# Etiqueta para mostrar el costo total
+# Etiqueta para mostrar los resultados
+x_entries = [[None] * 3 for _ in range(2)]
+for i in range(2):
+    for j in range(3):
+        x_entries[i][j] = tk.Label(window, text="")
+        x_entries[i][j].grid(row=i + 4, column=j, padx=10, pady=5)
 
 # Etiqueta para mostrar el costo mínimo
 
