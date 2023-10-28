@@ -114,11 +114,21 @@ frameFormulario = Frame(bg="white")
 frameFormulario.pack(fill="both", expand="True", padx=10, pady=10)
 
 # Frame izquierdo del formulario
-
+frameIzquierdo = Frame(frameFormulario, bg="blue", width=600, height=500)
+frameIzquierdo.pack(side="left", fill="both", expand="True")
 # Etiqueta para obtener información
-
+labelTituloDatos = Label(frameIzquierdo, text="Costos de Distribución", font=("Helvetica", 18,"bold"), fg="white", bg="blue")
+labelTituloDatos.pack(side="top", pady=(10,0))
 
 # Etiquetas y campos de entrada para costos
+cost_matrix_labels = [[None] * 3 for _ in range(2)]
+cost_matrix_entries = [[None] * 3 for _ in range(2)]
+for i in range(2):
+    for j in range(3):
+        cost_matrix_labels[i][j] = Label(frameIzquierdo, text=f"Costo Almacén {i + 1} a Farmacia {j + 1}:", font=("Helvetica", 12, "bold"), fg="white", bg="blue")
+        cost_matrix_entries[i][j] = Entry(frameIzquierdo, justify="center", font=("Helvetica", 14), fg="navy", bg="grey90")
+        cost_matrix_labels[i][j].pack(padx=10, pady=5)
+        cost_matrix_entries[i][j].pack(padx=10, pady=5)
 
 #frame centro del formulario
 
