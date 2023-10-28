@@ -129,48 +129,60 @@ for i in range(2):
         cost_matrix_entries[i][j] = Entry(frameIzquierdo, justify="center", font=("Helvetica", 14), fg="navy", bg="grey90")
         cost_matrix_labels[i][j].pack(padx=10, pady=5)
         cost_matrix_entries[i][j].pack(padx=10, pady=5)
-
 #frame centro del formulario
-
+frameCentro = Frame(frameFormulario, bg="white", width=400, height=500)
+frameCentro.pack(side="left", fill="both", expand="True")
+labelTituloDatos = Label(frameCentro, text="Demanda de Farmacias", font=("Helvetica", 18,"bold"), fg="navy", bg="white")
+labelTituloDatos.pack(side="top", pady=(10,0))
 # Crear etiquetas y campos de entrada para demands
-#se utiliza biblioteca como tkinter de como hacer interfaz grafica en python
-demands_labels = [tk.Label(window, text=f"Demanda Farmacia {j + 1}:") for j in range(3)] #contendrá etiquetas de texto y crea una etiqueta de texto con el texto 
-#"Demanda Farmacia X:", donde X es el número de farmacia, que va desde 1 hasta 3
-demands_entries = [tk.Entry(window) for _ in range(3)] #Se crea una lista demands_entriesque contendrá cuadros de entrada.
-
-for j in range(3): #Inicia un bucle for que registra los valores de j 0 a 2 (representando las tres farmacias).
-    demands_labels[j].grid(row=2, column=j, padx=10, pady=5)
-    demands_entries[j].grid(row=2, column=j + 3, padx=10, pady=5)
-#Coloque la etiqueta demands_labels[j]en la ventana utilizando la geometría de la cuadrícula (grid).
-
+demands_labels = [tk.Label(frameCentro, text=f"Demanda Farmacia {j + 1}:", font=("Helvetica", 12, "bold"), fg="navy", bg="white") for j in range(3)]
+demands_entries = [tk.Entry(frameCentro, justify="center",font=("Helvetica", 14), fg="navy", bg="grey90" ) for _ in range(3)]
+for j in range(3):
+    demands_labels[j].pack( padx=10, pady=5)
+    demands_entries[j].pack( padx=10, pady=5)
 # Frame derecho del formulario
-
+frameDerecho = Frame(frameFormulario, bg="navy", width=400, height=500)
+frameDerecho.pack(side="right", fill="both", expand="True")
+labelTitulo= Label(frameCentro, text="Capacidad de Almacenes", font=("Helvetica", 18,"bold"), fg="navy", bg="white")
+labelTitulo.pack(side="top", pady=(10,0))
     #Etiquetas e inputos para la entrada de Capacidades de almacenes
-capacities_labels = [tk.Label(window, text=f"Capacidad Almacén {i + 1}:") for i in range(2)]
-capacities_entries = [tk.Entry(window) for _ in range(2)]
+capacities_labels = [tk.Label(frameCentro, text=f"Capacidad Almacén {i + 1}:",font=("Helvetica", 12, "bold"), fg="navy", bg="white") for i in range(2)]
+capacities_entries = [tk.Entry(frameCentro, justify="center", font=("Helvetica", 14),bg="grey90") for _ in range(2)]
 for i in range(2):
-    capacities_labels[i].grid(row=i, column=6, padx=10, pady=5)
-    capacities_entries[i].grid(row=i, column=7, padx=10, pady=5)
-    
+    capacities_labels[i].pack( padx=10, pady=5)
+    capacities_entries[i].pack( padx=10, pady=5)
 # boton para resolver el problema
-#Boton que se mostrara en ventana
-solve_button = tk.Button(window, text="Resolver", command=solve_problem)#Se crea un objeto de botón solve_buttonutilizando la clase `tk.Buttontk.Buttonde Tkinter.
-solve_button.grid(row=3, column=0, columnspan=8, padx=10, pady=10)
+solve_button = tk.Button(
+    frameCentro,
+    text="Resolver",
+    font=("Helvetica", 18, "bold"),
+    fg="white",
+    bg="navy",
+    borderwidth=2,  # Ancho del borde
+    relief="sunken",  # Estilo del borde (raised, sunken, flat, etc.)
+    padx=20,  # Espacio horizontal dentro del botón
+    pady=10,  # Espacio vertical dentro del botón,
+    command=solve_problem
+)
+solve_button.pack(padx=10, pady=10)
 
 
 
-# Etiqueta para mostrar los resultados
-# crea una matriz de etiquetas
-x_entries = [[None] * 3 for _ in range(2)] #Se crea una lista bidimensional llamada `x_entriesx_entriesque tendrá un tamaño de 2 filas y 3 columnas.
-#recorre los valores de j
+# Etiqueta para mostrar el costo total
+x_entries = [[None] * 3 for _ in range(2)]
+labelResultado= Label(frameDerecho, text="Cantidad de unidades a enviar", font=("Helvetica", 18,"bold"), fg="white", bg="navy")
+labelResultado.pack(padx=10, pady=10)
 for i in range(2):
     for j in range(3):
-        x_entries[i][j] = tk.Label(window, text="")
-        x_entries[i][j].grid(row=i + 4, column=j, padx=10, pady=5)
+        x_entries[i][j] = tk.Label(frameDerecho, text="" ,font=("Helvetica", 12, "bold"), fg="white", bg="navy")
+        x_entries[i][j].pack(padx=10, pady=5)
 
 # Etiqueta para mostrar el costo mínimo
-costo_label = tk.Label(window, text="")
-costo_label.grid(row=6, column=0, columnspan=8, padx=10, pady=5)
+labelcostomimino= Label(frameDerecho, text="Costo mínimo:", font=("Helvetica", 18,"bold"), fg="white", bg="navy")
+labelcostomimino.pack(padx=10, pady=(30,0))
+costo_label = tk.Label(frameDerecho, text="", font=("Helvetica", 16, "bold"), fg="white", bg="navy")
+costo_label.pack(padx=10, pady=5)
+
 
 raiz.mainloop()  # Mantener la ventana en bucle
 
