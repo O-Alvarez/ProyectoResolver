@@ -142,7 +142,12 @@ for j in range(3):
 # Frame derecho del formulario
 
     #Etiquetas e inputos para la entrada de Capacidades de almacenes
-
+capacities_labels = [tk.Label(window, text=f"Capacidad Almacén {i + 1}:") for i in range(2)]
+capacities_entries = [tk.Entry(window) for _ in range(2)]
+for i in range(2):
+    capacities_labels[i].grid(row=i, column=6, padx=10, pady=5)
+    capacities_entries[i].grid(row=i, column=7, padx=10, pady=5)
+    
 # boton para resolver el problema
 solve_button = tk.Button(window, text="Resolver", command=solve_problem)
 solve_button.grid(row=3, column=0, columnspan=8, padx=10, pady=10)
@@ -157,7 +162,8 @@ for i in range(2):
         x_entries[i][j].grid(row=i + 4, column=j, padx=10, pady=5)
 
 # Etiqueta para mostrar el costo mínimo
-
+costo_label = tk.Label(window, text="")
+costo_label.grid(row=6, column=0, columnspan=8, padx=10, pady=5)
 
 raiz.mainloop()  # Mantener la ventana en bucle
 
