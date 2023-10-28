@@ -133,24 +133,31 @@ for i in range(2):
 #frame centro del formulario
 
 # Crear etiquetas y campos de entrada para demands
-demands_labels = [tk.Label(window, text=f"Demanda Farmacia {j + 1}:") for j in range(3)]
-demands_entries = [tk.Entry(window) for _ in range(3)]
-for j in range(3):
+#se utiliza biblioteca como tkinter de como hacer interfaz grafica en python
+demands_labels = [tk.Label(window, text=f"Demanda Farmacia {j + 1}:") for j in range(3)] #contendrá etiquetas de texto y crea una etiqueta de texto con el texto 
+#"Demanda Farmacia X:", donde X es el número de farmacia, que va desde 1 hasta 3
+demands_entries = [tk.Entry(window) for _ in range(3)] #Se crea una lista demands_entriesque contendrá cuadros de entrada.
+
+for j in range(3): #Inicia un bucle for que registra los valores de j 0 a 2 (representando las tres farmacias).
     demands_labels[j].grid(row=2, column=j, padx=10, pady=5)
     demands_entries[j].grid(row=2, column=j + 3, padx=10, pady=5)
+#Coloque la etiqueta demands_labels[j]en la ventana utilizando la geometría de la cuadrícula (grid).
 
 # Frame derecho del formulario
 
     #Etiquetas e inputos para la entrada de Capacidades de almacenes
 
 # boton para resolver el problema
-solve_button = tk.Button(window, text="Resolver", command=solve_problem)
+#Boton que se mostrara en ventana
+solve_button = tk.Button(window, text="Resolver", command=solve_problem)#Se crea un objeto de botón solve_buttonutilizando la clase `tk.Buttontk.Buttonde Tkinter.
 solve_button.grid(row=3, column=0, columnspan=8, padx=10, pady=10)
 
 
 
 # Etiqueta para mostrar los resultados
-x_entries = [[None] * 3 for _ in range(2)]
+# crea una matriz de etiquetas
+x_entries = [[None] * 3 for _ in range(2)] #Se crea una lista bidimensional llamada `x_entriesx_entriesque tendrá un tamaño de 2 filas y 3 columnas.
+#recorre los valores de j
 for i in range(2):
     for j in range(3):
         x_entries[i][j] = tk.Label(window, text="")
